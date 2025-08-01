@@ -21,12 +21,15 @@ def train_model():
     # Evaluate performance
     predictions = model.predict(X_test)
     r2 = r2_score(y_test, predictions)
-    rmse = np.sqrt(mean_squared_error(y_test, predictions))
-    
+    mse = mean_squared_error(y_test, predictions)
+
+    # Changed RMSE to MSE
+
     print(f"R² Score: {r2:.4f}")
-    print(f"RMSE: {rmse:.4f}")
+    print(f"MSE: {mse:.4f}")
 
     # Save model
+    
     save_model(model, "model.joblib")
 
     return model
