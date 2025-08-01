@@ -1,20 +1,24 @@
-# Use an official lightweight Python image
+# Use a slim Python image
 FROM python:3.11-slim
 
-# Set the working directory
+# Set metadata
+LABEL maintainer="Anmol" \
+      description="MLOps pipeline for California Housing prediction"
+
+# Set working directory
 WORKDIR /app
 
-# Copy only necessary files
+# Install Python dependencies
 COPY Requirements.txt .
 RUN pip install --no-cache-dir -r Requirements.txt
 
-# Copy source code
+# Copy application source code
 COPY src/ src/
 
-# Copy trained model if available
-COPY model.joblib .
-COPY quant_params.joblib .
-COPY unquant_params.joblib .
+# Copy models if available
+COPY model.joblib . 
+COPY quant_params.joblib . 
+COPY unquant_params.joblib . 
 
-# Default command: run prediction
+# Default command to run prediction
 CMD ["python", "src/predict.py"]
