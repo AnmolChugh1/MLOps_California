@@ -13,6 +13,8 @@ COPY src/ src/
 
 # Copy trained model if available
 COPY model.joblib .
+COPY quant_params.joblib .
+COPY unquant_params.joblib .
 
 # Default command: run prediction
 CMD ["python", "src/predict.py"]
