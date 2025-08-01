@@ -74,4 +74,4 @@ jobs:
         run: |
           docker tag mlops-pipeline ${{ secrets.DOCKER_NAME }}/mlops-pipeline
           docker push ${{ secrets.DOCKER_NAME }}/mlops-pipeline
-          echo "Docker image has been pushed successfully.
+          echo "Docker image has been pushed successfully in github."
