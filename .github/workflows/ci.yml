@@ -55,22 +55,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Docker
-        uses: docker-practice/actions-setup-docker@v1
-
       - name: Build Docker image
         run: docker build -t mlops-pipeline .
 
       - name: Run Docker container
         run: docker run --rm mlops-pipeline
 
-      - name: Show Docker daemon config (if any)
-        run: |
-          if [ -f /etc/docker/daemon.json ]; then
-            cat /etc/docker/daemon.json
-          else
-            echo "No daemon.json found — using Docker defaults."
-          fi
 
       - name: Login to Docker Hub platform
         if: success()
@@ -84,4 +74,4 @@ jobs:
         run: |
           docker tag mlops-pipeline ${{ secrets.DOCKER_NAME }}/mlops-pipeline
           docker push ${{ secrets.DOCKER_NAME }}/mlops-pipeline
-          echo "Docker image has been pushed successfully."
+          echo "Docker image has been pushed successfully.
